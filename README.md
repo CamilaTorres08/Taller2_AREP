@@ -165,6 +165,7 @@ Para devolver la respuesta del endpoint use el parámetro `response`, en el pued
 
 #### Ejemplo Completo
 
+```
     get("/prueba", (request, response) -> {
         //Obtiene el valor del parametro
         String param = request.getValues("case");
@@ -184,52 +185,75 @@ Para devolver la respuesta del endpoint use el parámetro `response`, en el pued
         //Retorna 204 No Content, Content-Type: text/plain
         return response;
     })
-
+```
 
 ## Pruebas
 ### Pruebas manuales
 Para la ejecución de estas pruebas, se definieron las lambdas que puede observar más a detalle en el archivo `Main`:
 * `staticfiles`: Verificamos si se asignó correctamente el directorio para guardar los archivos estáticos
+
 `http://localhost:35000/index.html`
+
 <img src="ReadmeImages/img_6.png">
+
 `http://localhost:35000/styles/style.css`
+
 <img src="ReadmeImages/img_7.png">
+
 `http://localhost:35000/scripts/script.js`
+
 <img src="ReadmeImages/img_8.png">
+
 `http://localhost:35000/images/logo.png`
+
 <img src="ReadmeImages/img_9.png">
+
 Obtener un archivo que no existe: `http://localhost:35000/images/hola.html`
+
 <img src="ReadmeImages/img_11.png">
+
 * `/hello`: Retorna un saludo pasandole como parametro el nombre de la persona a saludar, en caso de que no haya parametros,
 se devuelve un mensaje *hello world!*
 Abrimos el navegador y escribimos `http://localhost:35000/app/hello`
+
   <img src="ReadmeImages/helloWorld.png">
-`http://localhost:35000/app/hello?name=Camila`
+
+  `http://localhost:35000/app/hello?name=Camila`
   <img src="ReadmeImages/img.png">
 
 * `/pi`: Retorna el valor de Pi
 
   `http://localhost:35000/app/pi`
+
   <img src="ReadmeImages/img_1.png">
 
 * `/tasks`: Se construyó una aplicación web que agrega y busca tareas por el nombre,
 por lo que al hacer click en el buscador de la app, se usa `http://localhost:35000/app/tasks?filter=[value]`
 
     `http://localhost:35000/app/tasks?filter=All`
+
     <img src="ReadmeImages/img_2.png">
+  
   `http://localhost:35000/app/tasks?filter=arep`
+
     <img src="ReadmeImages/img_3.png">
+  
   Probando directamente en el navegador
+
     <img src="ReadmeImages/img_4.png">
+  
   Mandando un parámetro no válido
+
     <img src="ReadmeImages/img_5.png">
 
 * `/numbers`: Retorna los primeros n números en una lista 
 `http://localhost:35000/app/numbers`
+
   <img src="ReadmeImages/img_12.png">
 
 * Solicitar un endpoint que no se creó
   `http://localhost:35000/app/prueba`
+
   <img src="ReadmeImages/img_10.png">
 
 ### Pruebas automáticas
