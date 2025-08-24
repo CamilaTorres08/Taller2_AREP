@@ -3,7 +3,9 @@ package edu.eci.arep;
 import edu.eci.arep.classes.Task;
 import edu.eci.arep.classes.TaskManager;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static edu.eci.arep.classes.TaskManager.getTaskManager;
 import static edu.eci.arep.httpserver.HttpServer.*;
@@ -39,6 +41,19 @@ public class Main {
                 }
                 return res.body(tasks);
             });
+            //return first n numbers in a list
+            get("/numbers", (request, response) -> {
+                String param = request.getValues("n");
+                if(param == null){
+                    return response.status(400).body("Missing n parameter");
+                }
+                List<Integer> list = new ArrayList<>();
+                for(int i=1;i<=Integer.parseInt(param);i++){
+                    list.add(i);
+                }
+                return response.body(list);
+            });
+
             start();
         }catch(Exception e){
             e.printStackTrace();

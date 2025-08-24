@@ -3,7 +3,9 @@ import edu.eci.arep.classes.Task;
 import org.junit.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.eci.arep.connection.URLConnection;
 
@@ -35,6 +37,7 @@ public class HttpServerTests {
             }
             return res.body(tasks);
         });
+
         //Send a json
         get("/json", (req, res) -> {
             return res.body("{\"status\":\"ok\"}")
@@ -63,6 +66,7 @@ public class HttpServerTests {
         get("/emptyBody", (req, res) -> {
             return res.status(500);
         });
+
         //start the server
         urlConnection = new URLConnection(port);
         serverThread = new Thread(() -> {
@@ -291,4 +295,5 @@ public class HttpServerTests {
         String responseHeader = getConnection.getHeaderField("Content-Type");
         assertEquals("Should return text/plain",responseHeader,"text/plain");
     }
+
 }

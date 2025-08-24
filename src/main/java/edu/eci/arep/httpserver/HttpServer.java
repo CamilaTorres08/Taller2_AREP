@@ -17,7 +17,7 @@ import static edu.eci.arep.classes.TaskManager.getTaskManager;
 
 public class HttpServer {
     static Map<String,Service> services = new HashMap<>();
-    static String filesDir;
+    static String dir;
     static int port = 35000;
     public static void start(int serverPort) throws Exception {
         port = serverPort;
@@ -161,7 +161,7 @@ public class HttpServer {
         } else {
             Files.createDirectories(configured);
         }
-        filesDir = root + path;
+        dir = root + path;
     }
 
     /**
@@ -174,6 +174,7 @@ public class HttpServer {
         Service service = services.get(serviceRoute);
         HttpRequest req = new HttpRequest(requestURI);
         HttpResponse res = new HttpResponse();
+        if(service == null) return res.status(405).body("Method GET "+requestURI+" not supported");
         return service.executeService(req, res);
     }
 
@@ -185,7 +186,7 @@ public class HttpServer {
      * @return Response
      */
     private static HttpResponse getResources(String path) throws IOException {
-        String fullPath = filesDir;
+        String fullPath = dir;
         if(path.equals("/")){
             fullPath += "/" + "pages/index.html";
         }
