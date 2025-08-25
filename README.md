@@ -260,7 +260,7 @@ por lo que al hacer click en el buscador de la app, se usa `http://localhost:350
   Se incluye pruebas con JUnit para validar el funcionamiento del framework.
   El archivo de pruebas se encuentra en: 
 
-`src\test\java\edu\eci\arep\webserver\taller1_arep\HttpServerTests.java`
+`src\test\java\edu\eci\arep\HttpServerTests.java`
 
 #### Ejecución de pruebas
 
