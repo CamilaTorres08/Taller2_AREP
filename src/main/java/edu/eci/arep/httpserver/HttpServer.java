@@ -258,7 +258,7 @@ public class HttpServer {
                 .header("Content-Length",String.valueOf(fileContent.length));
     }
     /**
-     * Saves task in memory, by post request is not implemented using lambdas
+     * Saves task in memory
      * Since POST endpoints are not yet implemented using lambdas
      * this method handles the task creation directly.
      *  It uses the singleton to add the task
