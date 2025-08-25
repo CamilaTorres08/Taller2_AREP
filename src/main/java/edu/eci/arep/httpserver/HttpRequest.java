@@ -12,6 +12,9 @@ public class HttpRequest {
         if(uri.getQuery() != null) setParamValues();
     }
 
+    /**
+     * Stores the parameters
+     */
     public void setParamValues(){
         String[] values = uri.getQuery().split("&");
         for(String value : values){
@@ -21,6 +24,12 @@ public class HttpRequest {
             }
         }
     }
+
+    /**
+     * Retrieves the value of a query parameter
+     * @param paraName the name of the parameter to look up
+     * @return the parameter value
+     */
     public String getValues(String paraName){
         return parameters.get(paraName);
     }

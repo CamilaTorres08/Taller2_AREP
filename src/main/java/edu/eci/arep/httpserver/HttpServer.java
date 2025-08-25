@@ -133,18 +133,19 @@ public class HttpServer {
         }
     }
     /**
-    *Manages GET methods
-    * @param  route The resource
-     * @param service the function to execute
+    *Registers a new GET endpoint.
+    * @param  route the endpoint path to be handled
+     * @param service service the lambda function to execute when the route is requested
      */
     public static void get(String route, Service service){
         services.put(route,service);
     }
     /**
-    *Set the directory of the files
-     * @param path the path where the files will save
+     *Configures the directory for serving static files.
+     * If the directory does not exist, it will be created automatically.
+     * @param path the relative path where static files will be served from
      * @throws IOException if an error occurs while creating the directory
-     * @throws IllegalArgumentException if the path is not correct
+     * @throws IllegalArgumentException if the path is null, blank, not a directory, or not readable
      **/
     public static void staticfiles(String path) throws IOException, IllegalArgumentException {
         if(path == null || path.isEmpty()) throw new IllegalArgumentException("Static Files: path cannot be null/blank");
@@ -165,8 +166,8 @@ public class HttpServer {
     }
 
     /**
-     * Process the GET Request
-     * @param requestURI the resource
+     * Processes an incoming GET request by resolving the target service and executing it.
+     * @param requestURI requestURI the URI of the requested resource (must start with "/app")
      * @return Response
      */
     private static HttpResponse processRequest(URI requestURI) {
@@ -234,7 +235,7 @@ public class HttpServer {
      * Read and send the file text (html, css or javascript)
      * @param fullPath full path of the file
      * @throws IOException if an error occurs while writing to the output stream
-     * @return Response
+     * @return Response with the text file
      */
     private static HttpResponse sendTextFile(String fullPath)throws IOException{
         byte[] output = readFile(fullPath).getBytes(StandardCharsets.UTF_8);
@@ -244,7 +245,7 @@ public class HttpServer {
      * Read and send images (png, jpg or jpeg)
      * @param fullPath full path of the file
      * @throws IOException if an error occurs while reading the file image
-     * @return Response
+     * @return Response with the image
      */
     private static HttpResponse sendImageFile(String fullPath)throws IOException {
         Path filePath = Paths.get(fullPath);
@@ -257,11 +258,13 @@ public class HttpServer {
                 .header("Content-Length",String.valueOf(fileContent.length));
     }
     /**
-     * Save a task in memory, by post request is not implemented using lambdas
-     * we use singletton pattern to obtain the instance of taskManager and save the task
+     * Saves task in memory, by post request is not implemented using lambdas
+     * Since POST endpoints are not yet implemented using lambdas
+     * this method handles the task creation directly.
+     *  It uses the singleton to add the task
      * @param name name of the task
      * @param description description of the task
-     * @return Request
+     * @return Response with the created task
      */
     private static HttpResponse saveTask(String name, String description){
         Task newTask = getTaskManager().addTask(name,description);

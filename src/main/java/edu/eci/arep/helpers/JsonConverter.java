@@ -5,9 +5,9 @@ import java.util.List;
 
 public class JsonConverter {
     /**
-     * Builds the json and convert it to string
+     * Serializes an object into its JSON string representation.
      * @param obj object to convert
-     * @return json in format string
+     * @return JSON string representation
      */
     public static String toJson(Object obj) {
         if(obj instanceof String) return quote((String) obj);
@@ -19,9 +19,9 @@ public class JsonConverter {
     }
 
     /**
-     * Converts list to json format
-     * @param array
-     * @return
+     * Converts a list into a JSON array string.
+     * @param array the list to convert
+     * @return JSON array as a string
      */
     private static String arrayToJson(Object array) {
         StringBuilder sb = new StringBuilder("[");
@@ -36,9 +36,9 @@ public class JsonConverter {
     }
 
     /**
-     * Converts and object to json
-     * @param obj
-     * @return
+     * Serializes a generic Java object into a JSON object string.
+     * @param obj the object to serialize
+     * @return JSON object as a string
      */
     private static String objectToJson(Object obj) {
         StringBuilder sb = new StringBuilder("{");
@@ -64,9 +64,9 @@ public class JsonConverter {
     }
 
     /**
-     * Converts a string to json
-     * @param s
-     * @return
+     * Escapes and wraps a string in double quotes to produce a valid JSON string value.
+     * @param s the input string to escape
+     * @return the JSON-safe string wrapped in double quotes
      */
     private static String quote(String s) {
         return "\"" + s

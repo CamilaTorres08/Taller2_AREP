@@ -192,25 +192,25 @@ Para devolver la respuesta del endpoint use el parámetro `response`, en el pued
 Para la ejecución de estas pruebas, se definieron las lambdas que puede observar más a detalle en el archivo `Main`:
 * `staticfiles`: Verificamos si se asignó correctamente el directorio para guardar los archivos estáticos
 
-`http://localhost:35000/index.html`
+  `http://localhost:35000/index.html`
 
-<img src="ReadmeImages/img_6.png">
+  <img src="ReadmeImages/img_6.png">
 
-`http://localhost:35000/styles/style.css`
+  `http://localhost:35000/styles/style.css`
 
-<img src="ReadmeImages/img_7.png">
+  <img src="ReadmeImages/img_7.png">
 
-`http://localhost:35000/scripts/script.js`
+  `http://localhost:35000/scripts/script.js`
 
-<img src="ReadmeImages/img_8.png">
+  <img src="ReadmeImages/img_8.png">
 
-`http://localhost:35000/images/logo.png`
+  `http://localhost:35000/images/logo.png`
 
-<img src="ReadmeImages/img_9.png">
+  <img src="ReadmeImages/img_9.png">
 
-Obtener un archivo que no existe: `http://localhost:35000/images/hola.html`
+  Obtener un archivo que no existe: `http://localhost:35000/images/hola.html`
 
-<img src="ReadmeImages/img_11.png">
+  <img src="ReadmeImages/img_11.png">
 
 * `/hello`: Retorna un saludo pasandole como parametro el nombre de la persona a saludar, en caso de que no haya parametros,
 se devuelve un mensaje *hello world!*
