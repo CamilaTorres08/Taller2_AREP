@@ -1,4 +1,4 @@
-# Desarrollo de un marco web para servicios REST y gestión de archivos estáticos
+# Desarrollo de un framework web para servicios REST y gestión de archivos estáticos
 
 ## Introducción
 
